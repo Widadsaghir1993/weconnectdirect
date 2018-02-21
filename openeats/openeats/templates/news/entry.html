@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{{ block.super }}- {{ entry.title }} {% endblock %}
+{% block content %}
+    <div class="jumbotron">
+      <h2> {{ entry.title }}</h2>
+
+      {% if entry.image %}
+            <img src="{{ MEDIA_URL }}{{ entry.image }}" style="max-width: 100%;"/>
+      {% endif %}
+
+      {{ entry.content|safe}}
+    </div>
+{% endblock %}

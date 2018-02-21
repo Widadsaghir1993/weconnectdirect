@@ -1,0 +1,15 @@
+{% extends 'list/grocery_base.html' %}
+{% load i18n %}
+{% block title %}{{ block.super }}| {{ recipe }}|{% trans 'grocery list' %} {% endblock %}
+
+{% block content %}
+  <form class="well form-inline" action="" method="post">{% csrf_token %}
+    {{  form.errors }} {{  form.non_field_errors }}
+    {{ form.as_p }}
+    <input type='hidden' name='recipe_id' value="{{ recipe.id }}" />
+    <div class="form-actions">
+      <button type="submit" class="btn btn-info">{% trans 'save' %}</button>
+      <a class="btn" href="{% url 'recipe_index' %}">{% trans 'cancel' %}</a>
+    </div>
+   </form>
+{% endblock %}

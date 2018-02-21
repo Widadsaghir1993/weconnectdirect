@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+{% load i18n %}
+<html>
+  <head>
+    <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    {% block keywords %}
+        <meta http-equiv="keywords" content="Recipes, OpenEats2, OpenEats, Django, Grocery List, Grocery Lists, Share Recipes, rated recipes"/>
+    {% endblock %}
+    <meta name="description" content="Amazing Recipes and beautiful food photography. Created as well as rated by you and fellow foodies."/>
+    <title>{% block title %}{{ OETITLE }}{% endblock %}</title>
+    {% block feeds %}
+        <link href="/feed/recent/" rel="alternate" type="application/rss+xml"
+              title="{{ OETITLE }}{% blocktrans %}Top Recipe Feed{% endblocktrans %}"/>{% endblock %}
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    {% block jscript %}{% endblock %}
+    {% load static %}
+    <link href="{% static "css/jquery-ui.min.css" %}" rel="stylesheet"/>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
+    <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-flatly-theme.css" %}"/>
+    <link rel="stylesheet" href="{% static "css/oe.css" %}" />
+
+     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+   <nav class="navbar navbar-default navbar-fixed-top">
+     <div class="container-fluid">
+       <div class="navbar-header">
+         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+         </button>
+         <a class="navbar-brand" href="/" >{{ OETITLE }}</a>
+       </div>
+         <div class="navbar-collapse collapse">
+           <ul class="nav navbar-nav">
+             {% if request.user.is_authenticated %}
+             <li><a href="/recipe/new/" title="new recipe">{% trans 'create' %}</a></li>
+             {% else %}
+             <li><a href="/accounts/signIn/" title="sign in">{% trans 'sign in' %}</a></li>
+             {% endif %}
+             {% if request.user.is_staff %}
+             <li><a href="/admin/" title="admin">{% trans 'admin' %}</a></li>
+             {% endif %}
+             <li><a href="/news/list/" title="development blog">{% trans 'news' %}</a></li>
+           </ul>
+               <ul class="nav navbar-nav navbar-right">
+               {% if request.user.is_authenticated %}
+                  <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        {{ request.user }} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                      <li><a href="{{ request.user.profile.get_absolute_url }}"><i class="glyphicon glyphicon-user"></i> {% trans 'profile' %}</a></li>
+                      <li><a href="{% url 'grocery_list' %}"><i class="glyphicon glyphicon-list"></i> {% trans 'grocery lists' %}</a></li>
+                      <li class="divider"></li>
+                      <li><a href="{% url 'accounts.views.logout_page' %}"><i class="glyphicon glyphicon-asterisk"></i> {% trans 'logout' %}</a></li>
+                    </ul>
+                  </li>
+               {% endif %}
+                <li><a>{% include 'languages/index.html' %}</a></li>
+               </ul>
+           </div>
+         </div><!--/.navbar-collapse -->
+      </nav> <!--./navbar -->
+
+   {% if messages %}
+     {% for message in messages %}
+       <div class="alert alert-{{  message.tags  }}">
+         {{ message }}
+       </div>
+     {% endfor %}
+   {% endif %}
+
+   <!--<div class="container-fluid">-->
+     <!--<div class="row">-->
+       <!--<div class="col-md-2 col-xs-8">-->
+         <!--<div class="well sidebar-nav">-->
+           <!--{% block sidebar %}-->
+           <!--{% load sidebar %}-->
+           <!--{% browse_tag %}-->
+           <!--{% endblock %}-->
+         <!--</div>&lt;!&ndash;/.well &ndash;&gt;-->
+       <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
+
+       <!--<div class="col-md-10 col-xs-12">-->
+         <!--{% block content %}{% endblock %}-->
+       <!--</div>-->
+     <!--</div>&lt;!&ndash;/row&ndash;&gt;-->
+
+     <!--<hr>-->
+
+     <!--<footer>-->
+        <!--<center>&copy;OpenEats 2017</center>-->
+    <!--</footer>-->
+   <!--</div>&lt;!&ndash;/.fluid-container&ndash;&gt;-->
+
+    <!-- javascript
+   ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/oe.js" %}"></script>
+
+
+  </body>
+</html>

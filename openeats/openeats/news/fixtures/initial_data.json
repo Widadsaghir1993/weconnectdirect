@@ -1,0 +1,14 @@
+[
+    {
+        "pk": 1, 
+        "model": "news.entry", 
+        "fields": {
+        	"content": "<p>OpenEats2 is an open source recipe management site. &nbsp;You can share recipes with friends, rate recipes, create grocery lists, store your favorite recipes to find easily, and more. &nbsp;<a href=\"/accounts/signIn/\">Sign up</a> now for your own account to get started. &nbsp;If you want to run your own personal OpenEats site visit our <a href=\"https://github.com/qgriffith/OpenEats\" target=\"_blank\">code site</a>, and our development <a href=\"http://oe2.openeats.org\" target=\"_blank\">blog</a> and <a href=\"http://oe2.openeats.org/en/forum/\" target=\"_blank\">forums</a>.</p>", 
+        	"image": "", 
+        	"pub_date": "2010-10-10 13:32:47", 
+        	"slug": "test-news-entry", 
+        	"title": "OpenEats 2",
+            "frontpage":1
+        }
+    }
+  ]

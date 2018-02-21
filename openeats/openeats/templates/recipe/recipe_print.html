@@ -1,0 +1,59 @@
+{% comment %}This template is the template for the recipe print view{% endcomment %}
+{% load i18n %}
+{% load static %}
+{% load sanitize %}
+<html>
+    <head>
+        <link rel="stylesheet" type="text/css" media="print" href="{% static "/css/prints.css" %}" />
+        <link rel="stylesheet" type="text/css" media="screen" href="{% static "/css/print.css" %}" />
+        <title>{{ OETITLE }}{% trans 'Print'%} {{ recipe }}</title>
+    </head>
+    <body>
+        <a id="notvisable" href="javascript:window.print()">Print</a>
+        {% if recipe.shared == 1 and recipe.author != request.user %}
+            <h2>{%trans 'Recipe is marked Private and you are not the author of it!' %}</h2>
+         {% else %}
+        <h3> {{ recipe }} - <span class="print-site"> {{ OETITLE }}</span></h3>
+        <p id="print-user"><b>{% trans 'Chef:' %}</b> {{ recipe.author }}</p>
+        <div class="print-desc">
+            {{ recipe.info|sanitize_html|safe }}
+        </div>
+        <div>
+            <ul class="list">
+                <li><b>{%trans "serves" %}</b> {{ recipe.servings }}</li>
+                <li><b>{%trans "cook time" %}</b> {{ recipe.cook_time }} {% trans 'mintues' %}</li>
+            </ul>
+        </div>
+        <div>
+            <h4>{%trans "Ingredients" %}</h4>
+            <ul>
+                {% for ing in recipe.ingredients.all %}
+                <li> {{ ing.quantity }} {{ ing.measurement}} - {{ ing.title }} {{ ing.preparation }}</li>
+                {% endfor %}
+            </ul>
+            {% if recipe.related %}
+                <h4>{{ recipe.related }}</h4>
+                 <ul>
+                {% for ing in recipe.related.ingredients.all %}
+                <li> {{ ing.quantity }} {{ ing.measurement}} - {{ ing.title }} {{ ing.preparation }}</li>
+                {% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+        <div>
+            <h4>{% trans 'Steps' %}</h4>
+           {{ recipe.directions|sanitize_html|safe }}
+            {% if recipe.related %}
+                <h4>{{ recipe.related }}</h4>
+                {{ recipe.related.directions|sanitize_html|safe }}
+            {% endif %}
+        </div>
+        <div>
+            <h4>{%trans 'Your Notes:' %}</h4>
+            {% for n in note %}
+                {{ n.text }}
+            {% endfor %}
+        </div>
+    {% endif %}
+    </body>
+</html>

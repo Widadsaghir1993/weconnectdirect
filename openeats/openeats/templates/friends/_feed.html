@@ -1,0 +1,29 @@
+{% load i18n %}
+{% comment %} this template is called by the friends_feed recipe_feed tag to display recipes from a friend on a users profile{% endcomment %}
+<div class="friend-feed">
+    {% if recipes.count > 0 %}
+        <ul>
+            {% for recipe in recipes %}
+                <li>{% trans 'new recipe added- ' %}<a href="/recipe/{{ recipe.slug }}/">{{ recipe }}</a></li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% if rated.count > 0 %}
+        <ul>
+            {% for rate in rated %}
+                <li>{{ following }} {% trans 'rated a recipe ' %}{{ rate.score }} {% trans 'out of 5 - ' %} <a href="/recipe/{{ rate.content_object.slug }}">{{rate.content_object  }}</a> </li>
+            {% endfor %}
+
+        </ul>
+    {% endif %}
+
+
+    {% if lists.count > 0 %}
+        <ul>
+            {%  for shared in lists %}
+                <li>{% trans 'new shared list- ' %}<a href="{% url 'grocery_show' user=following slug=shared.list.slug %}">{{  shared.list }}</a> </li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+</div>

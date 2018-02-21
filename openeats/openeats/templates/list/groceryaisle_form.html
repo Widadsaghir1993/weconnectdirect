@@ -1,0 +1,18 @@
+{% extends 'list/grocery_base.html' %}
+{% load i18n %}
+
+{% block content %}
+  <h2>{% trans 'add new aisle' %}</h2>
+    <form class="well form-horizontal" action="" method="post">{% csrf_token %}
+      {{ form.as_p }}
+        <div class="form-actions">
+          <button type="submit" class="btn btn-info">{% trans 'save' %}</button>
+          <a class="btn" href="{% url 'grocery_list' %}">{% trans 'cancel' %}</a>
+        </div>
+    </form>
+
+<div id="user_aisles">
+  {% include "list/_aisles.html" %}
+</div>
+
+{%  endblock %}

@@ -1,0 +1,12 @@
+{{ object.title }}
+{{ object.info }}
+{{ object.author }}
+
+{% for ing in object.ingredients.all %}
+    {{ ing.title }}
+    {{ ing.preparation }}
+{% endfor %}
+
+{% for tag in object.tags.all %}
+    {{ tag }}
+{% endfor %}

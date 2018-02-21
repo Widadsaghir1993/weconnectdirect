@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block jscript %}
+<script type="text/javascript">
+    $(document).ready(function () {
+        $.each($('#navbar').find('li'), function() {
+            $(this).toggleClass('active',
+                '/' + $(this).find('a').attr('href') == window.location.pathname);
+        });
+    });
+</script>
+{% endblock %}
+{% block content %}
+<div class="row">
+    <div class="col-md-12" style="height:50px;"></div>
+</div>
+<div class="row">
+	<ul class="nav nav-tabs">
+		<li class="active"><a data-toggle="tab" href="#signIn">{%trans 'sign in' %}</a></li>
+		<li><a data-toggle="tab" href="#signUp">{%trans 'sign up' %}</a></li>
+	</ul>
+    <div class="tab-content">
+        <div id="signIn" class="tab-pane fade in active">
+            {% include 'registration/_login_form.html' %}
+        </div>
+        <div id="signUp" class="tab-pane fade">
+            {% include 'registration/_create_form.html' %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

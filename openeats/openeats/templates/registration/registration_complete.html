@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% block content %}
+<div id="registration-complete">
+    <h2>{% trans 'Activation Link Sent' %}</h2>
+    {% trans "Thank you for signing up for" %} {{ OETITLE }} {% trans 'you have been emailed an activation link' %}
+</div>
+{% endblock %}

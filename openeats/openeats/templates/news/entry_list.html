@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% load pagination_tags %}
+{% block title %}{{ block.super }}- | {% trans 'news' %} {% endblock %}
+{% block content %}
+    {% if entry_list.count > 0 %}
+        {% autopaginate entry_list  %}
+    {% for entry in entry_list %}
+       <div class="row">
+         <div class="col-md-8 well">
+             <h2>{{ entry.title }}</h2>
+             <p>{{ entry.content|safe|truncatewords_html:150 }}</p>
+             <p><a class="btn btn-info" href="{{ entry.get_absolute_url }}">{% trans 'read more' %} &raquo;</a></p>
+         </div>
+       </div>
+    {% endfor %}
+   {% else %}
+        <p>{% trans "There currently isn't any news" %}</p>
+   {% endif %}
+
+{% endblock %}

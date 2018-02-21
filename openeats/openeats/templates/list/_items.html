@@ -1,0 +1,14 @@
+<div class="row">
+    <div class="col-sm-3">
+        <div class="list-group">
+            {% for aisle in aisle_list %}
+                <h4 class="list-group-item-heading list-group-item-info navheader">{{ aisle }}</h4>
+                {% for item in items %}
+                    {% if item.aisle == aisle %}
+                        <li class="list-group-item">{{ item }}</li>
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
