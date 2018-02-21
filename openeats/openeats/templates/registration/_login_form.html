@@ -31,16 +31,49 @@
                         <input id="id_password" class="form-control" placeholder="{% trans 'Password' %}" name="password" required="" type="password">
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-md-2 col-md-offset-2">
-                    <input type="hidden" name="next" value="{{ next }}" />
-                    <button type="submit" class="btn btn-default">{% trans 'login' %}</button>
-                </div>
-                <div class="col-md-offset-4 col-md-2">
-                    <a class="btn btn-info" href="{% url 'password_reset' %}" >{% trans 'password_reset' %}</a>
+                <div class="row" style="margin-top:10px;">
+                    <div class="col-md-5">
+                        <label>
+                            <input type="checkbox" value="rememberme" id="memeberme" name="rememberme">
+                            Remember Me
+                        </label>
+                    </div>
+                    <div class="col-md-3 col-md-offset-4" style="padding:0px;">
+                        <input type="hidden" name="next" value="{{ next }}" />
+                        <button type="submit" class="btn btn-primary" style="width:100%;">{% trans 'login' %}</button>
+                    </div>
                 </div>
             </div>
         </form>
+
+        <div class="row">
+                <div class="col-md-12" style="text-align:center;">
+                    <a class="btn btn-link" href="{% url 'password_reset' %}" style="padding-bottom:5px;text-decoration: underline;">{% trans 'FOGOT YOUR PASSWORD' %}</a>
+                </div>
+                <div class="col-md-12" style="text-align:center;">
+                    <a class="btn btn-link" href="{% url 'password_reset' %}" style="padding-top:5px;text-decoration: underline;">{% trans 'CREATE AN ACCOUNT' %}</a>
+                </div>
+        </div>
+        <div class="row">
+            <p><span class="line"><b>Or</b></span></p>
+        </div>
+        <br/>
+
+        <div class="row" style="margin-bottom:10px;">
+             <div class="col-md-12" style="text-align:center">
+                <a class="btn btn-block btn-social btn-google" style="width:100%"><i class="fa fa-google"></i>Create Account Using Google</a>
+            </div>
+        </div>
+        <div class="row" style="margin-bottom:10px;">
+            <div class="col-md-12" style="text-align:center">
+                <a class="btn btn-block btn-social btn-facebook" style="width:100%"><i class="fa fa-facebook fa-fw"></i>Create Account Using Facebook</a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12" style="text-align:center">
+                <a class="btn btn-block btn-social btn-adn" style="width:100%"><i class="fa fa-adn"></i>Create Account Using ITS52</a>
+            </div>
+        </div>
+
     </div>
 </div>

@@ -373,3 +373,17 @@ div#404-image{
         margin-right:auto
     }
  }
+
+.line{
+    border-bottom: 1px solid #ccc;
+    width: 100%;
+    display: block;
+    height: 9px;
+    text-align:center;
+}
+
+.line b{
+    display: inline-block;
+    background: #fff;
+    padding: 0 20px;
+}
