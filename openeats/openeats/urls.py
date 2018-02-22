@@ -25,8 +25,10 @@ urlpatterns = [
     url(r'^grappelli/', include('grappelli.urls')),
     url(r'^accounts/logout/$', views.logout_page, name='accounts.views.logout_page'),
     url(r'^accounts/signIn/$', views.signIn_page, name='accounts.views.signIn_page'),
-    url(r'^accounts/ajax-signIn/$', auth_views.login, {'template_name': 'accounts/ajax_signIn.html',}, name='login'),
-    url(r'^accounts/ajax-create/$', register, {'backend': 'registration.backends.default.DefaultBackend','template_name': 'accounts/ajax_create.html',}),
+    url(r'^accounts/signUp/$', views.signUp_page, name='accounts.views.signUp_page'),
+
+    url(r'^accounts/ajax-signIn/$', auth_views.login, {'template_name': 'accounts/signIn_page.html',}, name='login'),
+    url(r'^accounts/ajax-create/$', register, {'backend': 'registration.backends.default.DefaultBackend','template_name': 'accounts/signIn_page.html',}),
     url(r'^password_change/$', auth_views.password_change, name='password_change'),
     url(r'^password_change/done/$', auth_views.password_change_done, name='password_change_done'),
     url(r'^password_reset/$', auth_views.password_reset, name='password_reset'),
@@ -51,6 +53,7 @@ urlpatterns = [
     url(r'^languages/', include('openeats.languages.urls')),
     url(r'^robots.txt$', TemplateView.as_view(template_name='robots.txt', content_type='text/plain')),
     url(r'^$', recipe.views.index),
+    url(r'^auth/', include('social_django.urls', namespace='social')),
 ]
 
 if settings.SERVE_MEDIA:

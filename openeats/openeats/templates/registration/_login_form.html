@@ -10,11 +10,11 @@
     <div class="col-md-12" style="height:50px;"></div>
 </div>
 <div class="row">
-    <div class="col-md-4 col-md-offset-2">
+    <div class="col-md-4 col-md-offset-4">
         <form class="form-horizontal" method="post" action="{% url 'login' %}">{% csrf_token %}
             <div class="form-group">
                 <label class="sr-only" for="id_username">{% filter capfirst %}{% trans 'username'  %}{% endfilter %}</label>
-                <div class="row">
+                <div class="row form-input">
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="glyphicon glyphicon-user"></i>
@@ -22,7 +22,7 @@
                         <input autofocus="" class="form-control" placeholder="{% filter capfirst %}{% trans 'username'  %}{% endfilter %}" id="id_username" maxlength="254" name="username" required="" type="text">
                     </div>
                 </div>
-                <div class="row">
+                <div class="row form-input">
                     <div class="input-group">
                     <label class="sr-only" for="id_password">{% trans 'Password' %}</label>
                         <span class="input-group-addon">
@@ -38,10 +38,11 @@
                             Remember Me
                         </label>
                     </div>
-                    <div class="col-md-3 col-md-offset-4" style="padding:0px;">
+                </div>
+                <div class="row" style="margin:0px;">
                         <input type="hidden" name="next" value="{{ next }}" />
-                        <button type="submit" class="btn btn-primary" style="width:100%;">{% trans 'login' %}</button>
-                    </div>
+                        <button type="submit" class="btn btn-primary block" style="width:100%;">{% trans 'login' %}</button>
+
                 </div>
             </div>
         </form>
@@ -51,7 +52,7 @@
                     <a class="btn btn-link" href="{% url 'password_reset' %}" style="padding-bottom:5px;text-decoration: underline;">{% trans 'FOGOT YOUR PASSWORD' %}</a>
                 </div>
                 <div class="col-md-12" style="text-align:center;">
-                    <a class="btn btn-link" href="{% url 'password_reset' %}" style="padding-top:5px;text-decoration: underline;">{% trans 'CREATE AN ACCOUNT' %}</a>
+                    <a class="btn btn-link" href="/accounts/signUp" style="padding-top:5px;text-decoration: underline;">{% trans 'CREATE AN ACCOUNT' %}</a>
                 </div>
         </div>
         <div class="row">
@@ -61,7 +62,7 @@
 
         <div class="row" style="margin-bottom:10px;">
              <div class="col-md-12" style="text-align:center">
-                <a class="btn btn-block btn-social btn-google" style="width:100%"><i class="fa fa-google"></i>Create Account Using Google</a>
+                <a href="{% url 'social:begin' 'google-oauth2' %}?next=/" class="btn btn-block btn-social btn-google" style="width:100%"><i class="fa fa-google"></i>Create Account Using Google</a>
             </div>
         </div>
         <div class="row" style="margin-bottom:10px;">

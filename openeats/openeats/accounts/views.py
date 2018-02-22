@@ -28,6 +28,8 @@ def signIn_page(request):
 
     return render(request, 'accounts/signIn_page.html')
 
+def signUp_page(request):
+    return render(request, 'accounts/signUp_page.html')
 
 def create_profile(request, form_class=None, success_url=None,
                    template_name='profiles/create_profile.html',

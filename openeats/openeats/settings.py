@@ -64,9 +64,20 @@ SITE_ID = 1
 
 
 
-AUTHENTICATION_BACKENDS = ('openeats.accounts.backends.CaseInsensitiveModelBackend',)
+AUTHENTICATION_BACKENDS = ['openeats.accounts.backends.CaseInsensitiveModelBackend',
+                            'social_core.backends.open_id.OpenIdAuth',  # for Google authentication
+                            'social_core.backends.google.GoogleOpenId',  # for Google authentication
+                            'social_core.backends.google.GoogleOAuth2',  # for Google authentication
+                            'social_core.backends.github.GithubOAuth2',  # for Github authentication
+                            'social_core.backends.facebook.FacebookOAuth2',  # for Facebook authentication
+                            'django.contrib.auth.backends.ModelBackend',
+                           ]
 
 CACHE_BACKEND = "file://"+os.path.join(BASE_PATH, 'cache')
+
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '541013627774-2bljsk7b2tv5lum15n04s720ahlhv0ck.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'irqjxjfiqoSUXDCNnfxNOVDL'
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -107,6 +118,8 @@ TEMPLATES = [{
             'django.template.context_processors.media',
             "openeats.context_processors.oelogo",
             "openeats.context_processors.oetitle",
+            'social_django.context_processors.backends',
+            'social_django.context_processors.login_redirect',
         ]
     }
 }]
@@ -169,6 +182,7 @@ INSTALLED_APPS = (
     'openeats.news',
     'openeats.list',
     'debug_toolbar',
+    'social_django',
 )
 
 
@@ -211,3 +225,35 @@ GRAPPELLI_INDEX_DASHBOARD = 'openeats.dashboard.CustomIndexDashboard'
 PAGINATION_DEFAULT_PAGINATION = 10
 
 
+SOCIAL_AUTH_PIPELINE = (
+    'social.pipeline.social_auth.social_details',
+    'social.pipeline.social_auth.social_uid',
+    'social.pipeline.social_auth.auth_allowed',
+    'social.pipeline.social_auth.social_user',
+    'social.pipeline.user.get_username',
+    'social.pipeline.user.create_user',
+    'social.pipeline.social_auth.associate_user',
+    'social.pipeline.debug.debug',
+    'social.pipeline.social_auth.load_extra_data',
+    'social.pipeline.user.user_details',
+    'social.pipeline.debug.debug',
+)
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
+    'https://www.googleapis.com/auth/userinfo.email',
+    'https://www.googleapis.com/auth/userinfo.profile'
+]
+
+# Google+ SignIn (google-plus)
+SOCIAL_AUTH_GOOGLE_PLUS_IGNORE_DEFAULT_SCOPE = True
+SOCIAL_AUTH_GOOGLE_PLUS_SCOPE = [
+'https://www.googleapis.com/auth/plus.login',
+'https://www.googleapis.com/auth/userinfo.email',
+'https://www.googleapis.com/auth/userinfo.profile'
+]
+
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY ='541013627774-2bljsk7b2tv5lum15n04s720ahlhv0ck.apps.googleusercontent.com'
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = 'irqjxjfiqoSUXDCNnfxNOVDL'  # Paste Secret Key
+
+SOCIAL_AUTH_URL_NAMESPACE = 'social'
