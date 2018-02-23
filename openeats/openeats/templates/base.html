@@ -2,6 +2,7 @@
 {% load i18n %}
 <html>
   <head>
+    <title>Saifee Mahal Mawaid - Recipe Menu KitchenManagement System</title>
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8"/>
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -21,8 +22,9 @@
     <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap.css" %}"/>
     <link rel="stylesheet" href="{% static "bootstrap/css/bootstrap-flatly-theme.css" %}"/>
     <link rel="stylesheet" href="{% static "css/oe.css" %}" />
+      <link rel="stylesheet" href="{% static "css/style.css" %}" />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css" />
-
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
      <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
       <script src="//html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -30,47 +32,36 @@
   </head>
 
   <body>
-   <nav class="navbar navbar-default navbar-fixed-top">
-     <div class="container-fluid">
-       <div class="navbar-header">
-         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-         </button>
-         <a class="navbar-brand" href="/" >{{ OETITLE }}</a>
-       </div>
-         <div class="navbar-collapse collapse">
-           <ul class="nav navbar-nav">
-             {% if request.user.is_authenticated %}
-             <li><a href="/recipe/new/" title="new recipe">{% trans 'create' %}</a></li>
-             {% else %}
-             <li><a href="/accounts/signIn/" title="sign in">{% trans 'sign in' %}</a></li>
-             {% endif %}
-             {% if request.user.is_staff %}
-             <li><a href="/admin/" title="admin">{% trans 'admin' %}</a></li>
-             {% endif %}
-             <li><a href="/news/list/" title="development blog">{% trans 'news' %}</a></li>
-           </ul>
-               <ul class="nav navbar-nav navbar-right">
-               {% if request.user.is_authenticated %}
-                  <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                        {{ request.user }} <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu" role="menu">
-                      <li><a href="{{ request.user.profile.get_absolute_url }}"><i class="glyphicon glyphicon-user"></i> {% trans 'profile' %}</a></li>
-                      <li><a href="{% url 'grocery_list' %}"><i class="glyphicon glyphicon-list"></i> {% trans 'grocery lists' %}</a></li>
-                      <li class="divider"></li>
-                      <li><a href="{% url 'accounts.views.logout_page' %}"><i class="glyphicon glyphicon-asterisk"></i> {% trans 'logout' %}</a></li>
-                    </ul>
-                  </li>
-               {% endif %}
-                <li><a>{% include 'languages/index.html' %}</a></li>
-               </ul>
-           </div>
-         </div><!--/.navbar-collapse -->
-      </nav> <!--./navbar -->
+
+  <div class="logo-head">
+	<div class="container">
+		<div class="logo">
+			<h2><a href="index.php">Saifee Mahal Mawaid</a></h2>
+			<h3 class="tittle">Recipe Menu Kitchen Management System</h3>
+		</div>
+		<div class="navigation">
+				<span class="menu"><img src="{% static "images/menu.png" %}" alt=""></span>
+				<div class="clearfix"></div>
+				<ul class="nav1">
+					<li><a class="hvr-overline-from-center button2 active" href="/">Home</a></li>
+					<li><a class="hvr-overline-from-center button2" href="/accounts/signIn/">Login</a></li>
+					<li><a class="hvr-overline-from-center button2" href="/accounts/signUp/">Register</a></li>
+					<li><a class="hvr-overline-from-center button2" href="#">Support</a></li>
+					<li><a class="hvr-overline-from-center button2" href="#">About</a></li>
+					<li><a class="hvr-overline-from-center button2" href="#">Twitter</a></li>
+				</ul>
+				<!-- script for menu -->
+					<script>
+						$( "span.menu" ).click(function() {
+						$( "ul.nav1" ).slideToggle( 300, function() {
+						 // Animation complete.
+						});
+						});
+					</script>
+				<!-- //script for menu -->
+		</div>
+	</div>
+</div>
 
    {% if messages %}
      {% for message in messages %}
@@ -80,35 +71,30 @@
      {% endfor %}
    {% endif %}
 
-   <!--<div class="container-fluid">-->
-     <!--<div class="row">-->
-       <!--<div class="col-md-2 col-xs-8">-->
-         <!--<div class="well sidebar-nav">-->
-           <!--{% block sidebar %}-->
-           <!--{% load sidebar %}-->
-           <!--{% browse_tag %}-->
-           <!--{% endblock %}-->
-         <!--</div>&lt;!&ndash;/.well &ndash;&gt;-->
-       <!--</div>&lt;!&ndash;/span&ndash;&gt;-->
-
-       <div class="col-md-10 col-xs-12" style="width:100%;">
+       <div class="col-md-10 col-xs-12" style="width:100%; padding:0px;">
          {% block content %}{% endblock %}
+         <div class="bottom-bar">
+             <div class="strip1"></div>
+             <div class="copy-right">
+               <div class="container">
+                    <p> A RMKMS © Product by  <a href="https://www.weconnectdirect.com.com/">WeconnectDirect</a></p>
+               </div>
+             </div>
+         </div>
        </div>
-     <!--</div>&lt;!&ndash;/row&ndash;&gt;-->
 
-     <!--<hr>-->
-
-     <!--<footer>-->
-        <!--<center>&copy;OpenEats 2017</center>-->
-    <!--</footer>-->
-   <!--</div>&lt;!&ndash;/.fluid-container&ndash;&gt;-->
-
-    <!-- javascript
-   ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static "bootstrap/js/bootstrap.js" %}"></script>
     <script type="text/javascript" src="{% static "js/oe.js" %}"></script>
-
-
+    <script type="text/javascript" src="{% static "js/move-top.js" %}"></script>
+    <script type="text/javascript" src="{% static "js/easing.js" %}"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function($) {
+            $(".scroll").click(function(event){
+                event.preventDefault();
+                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+            });
+        });
+    </script>
   </body>
 </html>

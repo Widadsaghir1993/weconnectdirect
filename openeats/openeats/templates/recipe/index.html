@@ -40,24 +40,8 @@
      {% endfor %}
     </div>
 
-    <!--<div id="tag-cloud" class="accordion">-->
-      <!--<div class="accordion-heading">-->
-          <!--<button class=" btn btn-info btn-block accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#tagcloud">-->
-              <!--<span class="glyphicon glyphicon-tags" aria-hidden="true"></span> {% trans 'recipe tags' %}-->
-          <!--</button>-->
-      <!--</div>-->
-      <!--<div id="tagcloud" class="accordion-body collapse">-->
-        <!--{% get_tagcloud as tags for 'recipe' %}-->
-        <!--<ul class="well">-->
-          <!--{% for tag in tags %}-->
-            <!--<li><a class="btn btn-info" href="{% url 'recipe_tags' tag=tag.slug %}" class="tag{{ tag.weight|floatformat:0 }}">{{tag}}</a></li>-->
-          <!--{% endfor %}-->
-        <!--</ul>-->
-      <!--</div>-->
-    <!--</div>-->
-<div class="container" style="width:100%;text-align:center;">
-  <h2>SAIFEE MAHAL MAWAID MANAGEMENT SYSTEM</h2>
-  <h3 style="margin-top:5px;">Recepie Menu Kitchen Management System</h3>
+<div class="container" style="width:100%; text-align:center; padding:0px;">
+
   <div id="myCarousel" class="carousel slide" data-ride="carousel">
     <!-- Indicators -->
     <ol class="carousel-indicators">
@@ -69,15 +53,15 @@
     <!-- Wrapper for slides -->
     <div class="carousel-inner">
       <div class="item active">
-        <img src="{% static "images/404.png" %}" alt="Los Angeles">
+        <img src="{% static "images/the-bohri-shahi-dawat-1.jpg" %}" alt="Saifee Mahal Mawaid" style="width:100%">
       </div>
 
       <div class="item">
-        <img src="{% static "images/add.png" %}" alt="Chicago" >
+        <img src="{% static "images/the-bohri-shahi-dawat-2.jpg" %}" alt="Saifee Mahal Mawaid" style="width:100%">
       </div>
 
       <div class="item">
-        <img src="{% static "images/delete.png" %}" alt="New york" >
+        <img src="{% static "images/the-bohri-shahi-dawat-3.jpg" %}" alt="Saifee Mahal Mawaid" style="width:100%" >
       </div>
     </div>
 
@@ -92,31 +76,29 @@
     </a>
   </div>
 
-  <!-- Added by Widad -->
-  <div class="panel-dark">
-	<div id="features" class="features-list">
-		<div class="feature1 feature">
-			<a class="inner" href="#search" rel="external" style="height: 200px;">
-			Recepie Management Search, Cook Time, Cusines. Calories, Nutrition...
-			</a>
-		</div>
-		<div class="feature2 feature">
-			<a href="#import" rel="external">
-			<div class="inner" style="height: 200px;">Meal Cooking and Planning for small to large groups</div>
-			</a>
-		</div>
-		<div class="feature3 feature">
-			<a href="#access" rel="external">
-			<div class="inner" style="height: 200px;">Kitchen Inventory, shopping List and Stock Reports.</div>
-			</a>
-		</div>
-		<div class="feature4 feature">
-			<a href="#plan" rel="external">
-			<div class="inner" style="height: 200px;">Access control Recepie sharing Import, Export, Multiple language, AV preparation</div>
-			</a>
-		</div>
-	</div>
+  <div class="events-bottom">
+	<div class="container">
+        <div class="col-xs-12 col-lg-3 col-sm-6 col-md-3" style="padding: 20px;">
+        <h3 class="tittle">Recipe Management</h3>
+            <p class="text-center">Search, Cook Time, Cusines, Calories, Nutrition</p>
+        </div>
+        <div class="col-xs-12 ol-lg-3 col-sm-6 col-md-3" style="padding: 20px;">
+            <h3 class="tittle">Planning</h3>
+            <p class="text-center">Meal Cooking and Planning for small to large groups</p>
+        </div>
+        <div class="col-xs-12 col-lg-3 col-sm-6 col-md-3" style="padding: 20px;">
+            <h3 class="tittle">Kitchen Inventory</h3>
+            <p class="text-center">Shopping list and Stock reports</p>
+        </div>
+        <div class="col-xs-12 col-lg-3 col-sm-6 col-md-3" style="padding: 20px;">
+            <h3 class="tittle">Access Control</h3>
+            <p class="text-center">Recipe sharing, Import, Export, Multiple languages, AV Preparation</p>
+        </div>
+
+    </div>
   </div>
+  <!-- Added by Widad -->
+
 
 </div>
 

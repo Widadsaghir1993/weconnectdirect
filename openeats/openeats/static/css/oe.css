@@ -1,6 +1,5 @@
 /* Base Template */
 body{
-    padding-top: 100px;
     padding-bottom: 40px;
 }
 .sidebar-nav {
@@ -36,7 +35,6 @@ div#tag-cloud {
     margin-left:150px;
     width:550px;
 }
-
 div#tag-cloud ul {
     margin: 1em 0;
     padding: 0.5em 10px;
@@ -391,4 +389,11 @@ div#404-image{
 .form-input{
     margin-left:0px;
     margin-right:0px;
+}
+.bottom-bar{
+    /*position: fixed;*/
+    z-index: 100;
+    bottom: 0;
+    left: 0;
+    width: 100%;
 }
